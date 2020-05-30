@@ -24,11 +24,19 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-
+        if (Input.GetButton("Horizontal")) Run();
+        if (Input.GetButtonDown("Jump")) Jump();
     }
 
     private void Run()
     {
+        Vector3 direction = transform.right * Input.GetAxis("Horizontal");
 
+        transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, speed * Time.deltaTime);
+    }
+
+    public void Jump()
+    {
+        rigidbody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
     }
 }
