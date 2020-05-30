@@ -53,7 +53,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
+     <Compile Include="Assets\Scripts\Monster.cs" />
+     <Compile Include="Assets\Scripts\Unit.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>E:/6_semestr/c# game/Adventure of Orc Borislaw/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
