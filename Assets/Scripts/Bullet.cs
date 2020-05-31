@@ -11,11 +11,21 @@ public class Bullet : MonoBehaviour
 		{
 			parent = value;
 		}
+
+		get
+		{
+			return parent;
+		}
 	}
 
     private float speed=10.0F;
     private Vector3 direction;
     public Vector3 Direction { set { direction = value; } }
+
+	public Color Color
+	{
+		set { sprite.color = value;  }
+	}
 
     private SpriteRenderer sprite;
     private void Awake()

@@ -25,5 +25,12 @@ public class Monster : Unit
 		{
 			 ReceiveDamage();
 		}
+
+		Unit unit = collider.GetComponent<Unit>();
+
+		if (unit && unit is Character)
+		{
+			unit.ReceiveDamage();
+		}
 	}  
 }

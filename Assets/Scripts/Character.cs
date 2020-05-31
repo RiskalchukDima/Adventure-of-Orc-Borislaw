@@ -6,7 +6,19 @@ using UnityEngine;
 public class Character : Unit
 {
     [SerializeField]
-    private int lives = 3;
+    private int lives = 5;
+
+    public int Lives
+	{
+		get { return lives; }
+		set
+		{
+            if (value < 5) lives = value;
+            livesBar.Refresh();
+		}
+	}
+    private LivesBar livesBar; 
+
     [SerializeField]
     private float speed = 3.0f;
     [SerializeField]
@@ -34,6 +46,7 @@ public class Character : Unit
 
     private void Awake()
     {
+        livesBar = FindObjectOfType<LivesBar>();
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sprite = GetComponentInChildren<SpriteRenderer>();
@@ -68,7 +81,7 @@ public class Character : Unit
 
     public override void ReceiveDamage()
 	{
-        lives--;
+        Lives--;
 
         rigidbody.velocity = Vector3.zero;
         rigidbody.AddForce(transform.up * 9.0F, ForceMode2D.Impulse); 
@@ -103,12 +116,12 @@ public class Character : Unit
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        //unit unit = collider.getcomponent<unit>();
+        Bullet bullet = collider.gameObject.GetComponent<Bullet>();
 
-       // if (unit )
-        //{
-        //    receivedamage();
-       // }
+        if (bullet && bullet.Parent != gameObject)
+        {
+            ReceiveDamage();
+        }
     }
 
 }

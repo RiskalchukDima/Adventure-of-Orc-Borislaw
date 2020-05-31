@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using System.Linq;
 
 public class MovableMonster : Monster
 {
@@ -10,14 +11,14 @@ public class MovableMonster : Monster
 
     Vector3 direction;
 
-    private Bullet bullet;
+    
 
     private SpriteRenderer sprite;
 
     protected override void Awake()
 	{
         sprite = GetComponentInChildren<SpriteRenderer>();
-        bullet = Resources.Load<Bullet>("Bullet");
+        
 	}
 
     protected override void Start()
@@ -36,7 +37,7 @@ public class MovableMonster : Monster
 
         if (unit && unit is Character)
 		{
-            if (Mathf.Abs(unit.transform.position.x - transform.position.x) < 0.5F) ReceiveDamage();
+            if (Mathf.Abs(unit.transform.position.x - transform.position.x) < 0.6F) ReceiveDamage();
             else unit.ReceiveDamage();
 		}
 	}
@@ -44,8 +45,8 @@ public class MovableMonster : Monster
 	{
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position + transform.up * 0.5F + transform.right * direction.x *0.7F , 0.1F );
 
-        if (colliders.Length > 0) direction *= -1.0F;
-        
+        if (colliders.Length > 0 && colliders.All(x=>!x.GetComponent<Character>()) ) direction *= -1.0F;
+        sprite.flipX = direction.x < 0.0F;
         transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, speed * Time.deltaTime);
 	}
 }
