@@ -130,7 +130,7 @@ public class Character : Unit
 
     private void OnAttak()
 	{
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position + transform.up * 0.5F + transform.right, 2.5F);
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position + transform.up * 0.5F + transform.right, 2.0F);
         for (int i = 0; i < enemies.Length; i++)
         {
 
