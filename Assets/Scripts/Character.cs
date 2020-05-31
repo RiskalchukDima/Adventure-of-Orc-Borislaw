@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class Character : Unit
@@ -12,6 +13,8 @@ public class Character : Unit
     private float jumpForce = 15.0f;
 
     private bool isGrounded = false;
+
+    private Bullet bullet;
 
     private CharState State
 	{
@@ -34,7 +37,11 @@ public class Character : Unit
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sprite = GetComponentInChildren<SpriteRenderer>();
+
+        bullet = Resources.Load<Bullet>("Bullet");
     }
+
+
 
     private void FixedUpdate()
 	{
@@ -44,9 +51,32 @@ public class Character : Unit
     private void Update()
     {
         if (isGrounded) State = CharState.Idle;
+
+        if (Input.GetButtonDown("Fire1")) Shoot();
         if (Input.GetButton("Horizontal")) Run();
         if (isGrounded && Input.GetButtonDown("Jump")) Jump();
     }
+
+    private void Shoot()
+	{
+        Vector3 position = transform.position;
+        position.y += 0.7F;
+
+        Bullet newBullet = Instantiate(bullet, position, bullet.transform.rotation) as Bullet;
+
+        newBullet.Parent = gameObject;
+        newBullet.Direction = newBullet.transform.right * (sprite.flipX ? -1.0F:1.0F );
+	}
+
+    public override void ReceiveDamage()
+	{
+        lives--;
+
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.AddForce(transform.up * 9.0F, ForceMode2D.Impulse); 
+
+        UnityEngine.Debug.Log(lives);
+	}
 
     private void Run()
     {
@@ -59,7 +89,7 @@ public class Character : Unit
         if (isGrounded)  State = CharState.Run;
     }
 
-    public void Jump()
+    private void Jump()
     {
         State = CharState.Jump; 
         rigidbody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
