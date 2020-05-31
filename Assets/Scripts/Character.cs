@@ -41,8 +41,6 @@ public class Character : Unit
         bullet = Resources.Load<Bullet>("Bullet");
     }
 
-
-
     private void FixedUpdate()
 	{
         CheckGround();
@@ -103,7 +101,16 @@ public class Character : Unit
         if (!isGrounded) State = CharState.Jump;
     }
 
-     
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        //unit unit = collider.getcomponent<unit>();
+
+       // if (unit )
+        //{
+        //    receivedamage();
+       // }
+    }
+
 }
 
 public enum CharState
