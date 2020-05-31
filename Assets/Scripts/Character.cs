@@ -6,7 +6,10 @@ using UnityEngine;
 
 public class Character : Unit
 {
- 
+    [SerializeField]
+    private GameObject winConditionPannel;
+    [SerializeField]
+    private GameObject loseConditionPannel;
 
     [SerializeField]
     private float timeBtwAttack;
@@ -110,7 +113,7 @@ public class Character : Unit
         if (Lives == 0)
         {
             Die();
-            
+            loseConditionPannel.SetActive(true);
         }
 	}
 
