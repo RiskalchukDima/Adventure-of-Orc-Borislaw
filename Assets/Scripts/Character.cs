@@ -5,8 +5,26 @@ using UnityEngine;
 
 public class Character : Unit
 {
+ 
+
+    [SerializeField]
+    private float timeBtwAttack;
+    [SerializeField]
+    public float startTimeBtwAttack;
+    [SerializeField]
+    public Transform attackPos;
+    [SerializeField]
+    public LayerMask enemy;
+    [SerializeField]
+    public float attackRange;
+    [SerializeField]
+    public int damage;
+    [SerializeField]
+    public Animator anim;
+
     [SerializeField]
     private int lives = 5;
+
 
     public int Lives
 	{
@@ -63,7 +81,7 @@ public class Character : Unit
     {
         if (isGrounded) State = CharState.Idle;
 
-        if (Input.GetButtonDown("Fire1")) Shoot();
+        if (Input.GetButtonDown("Fire1")) Attak();
         if (Input.GetButton("Horizontal")) Run();
         if (isGrounded && Input.GetButtonDown("Jump")) Jump();
     }
@@ -88,6 +106,11 @@ public class Character : Unit
 
         UnityEngine.Debug.Log(lives);
 	}
+
+    private void Attak()
+	{
+        State = CharState.Attak;
+    }
 
     private void Run()
     {
@@ -130,5 +153,6 @@ public enum CharState
 {
     Idle,
     Run,
-    Jump
+    Jump,
+    Attak
 }

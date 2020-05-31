@@ -2013,6 +2013,7 @@ GameObject:
   m_Component:
   - component: {fileID: 924577591}
   - component: {fileID: 924577590}
+  - component: {fileID: 924577592}
   m_Layer: 0
   m_Name: Heart
   m_TagString: Untagged
@@ -2044,13 +2045,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 924577589}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 11.51, y: 1.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1397492610}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &924577592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924577589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fe33611ce8bfc74dada630b1ddd9937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &930164559 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6522497632620207694, guid: fb36f7b670193a74e8a0a00e910695db,

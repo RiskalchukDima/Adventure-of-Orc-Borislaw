@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\MovableMonster.cs" />
      <Compile Include="Assets\Scripts\Obstacle.cs" />
      <Compile Include="Assets\Scripts\ShootableMonster.cs" />
+     <Compile Include="Assets\Scripts\UI\MenuControls.cs" />
      <Compile Include="Assets\Scripts\Unit.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>E:/6_semestr/c# game/Adventure of Orc Borislaw/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
