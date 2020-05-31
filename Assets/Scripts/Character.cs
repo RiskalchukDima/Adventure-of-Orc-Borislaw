@@ -113,8 +113,19 @@ public class Character : Unit
         if (Lives == 0)
         {
             Die();
-            loseConditionPannel.SetActive(true);
+            
         }
+	}
+
+    public override void Die()
+	{
+        Destroy(gameObject);
+        loseConditionPannel.SetActive(true);
+    }
+
+    public void Win()
+	{
+        UnityEngine.Debug.Log("Yarik pidar");
 	}
 
     private void Attak()
