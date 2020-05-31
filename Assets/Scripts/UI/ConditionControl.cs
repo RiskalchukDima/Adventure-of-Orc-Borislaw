@@ -11,6 +11,12 @@ public class ConditionControl : MonoBehaviour
     public void Restart()
     {
         losePannel.SetActive(false);
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene("SampleScene");
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
     }
 }

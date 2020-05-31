@@ -125,6 +125,8 @@ public class Character : Unit
 
     public void Win()
 	{
+        Time.timeScale = 0f;
+        winConditionPannel.SetActive(true);
         UnityEngine.Debug.Log("Yarik pidar");
 	}
 
