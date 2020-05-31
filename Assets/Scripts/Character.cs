@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
@@ -105,11 +106,42 @@ public class Character : Unit
         rigidbody.AddForce(transform.up * 9.0F, ForceMode2D.Impulse); 
 
         UnityEngine.Debug.Log(lives);
+
+        if (Lives == 0)
+        {
+            Die();
+            
+        }
 	}
 
     private void Attak()
 	{
-        State = CharState.Attak;
+        if (timeBtwAttack <= 0)
+        {
+            State = CharState.Attak;
+
+            
+        }
+		else
+		{
+            timeBtwAttack -= Time.deltaTime;
+		}
+    }
+
+    private void OnAttak()
+	{
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position + transform.up * 0.5F + transform.right, 2.5F);
+        for (int i = 0; i < enemies.Length; i++)
+        {
+
+            if (enemies[i].GetComponent<Monster>()) enemies[i].GetComponent<Monster>().ReceiveDamage();
+            if (enemies[i].GetComponent<MovableMonster>()) enemies[i].GetComponent<MovableMonster>().ReceiveDamage();
+            if (enemies[i].GetComponent<ShootableMonster>())
+            {
+
+                enemies[i].GetComponent<ShootableMonster>().ReceiveDamage();
+            }
+        }
     }
 
     private void Run()
